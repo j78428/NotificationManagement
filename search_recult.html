@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>通知管理系統</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="script/jquery-1.10.2.min.js"></script>
+    <script src="script/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/main.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="notice_box notice_status1" style="display:none;">
+        <div class="box_content">
+            <p><span class="glyphicon glyphicon-exclamation-sign"></span> 信用額度已異動</p>
+        </div>
+        <button class="remove_notice"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <div class="notice_box notice_status1" style="display:none;">
+        <div class="box_content">
+            <p><span class="glyphicon glyphicon-exclamation-sign"></span> 已多了1個群組</p>
+        </div>
+        <button class="remove_notice"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <div class="notice_box notice_status1" style="display:none;">
+        <div class="box_content">
+            <p><span class="glyphicon glyphicon-exclamation-sign"></span> 群組名稱新增了3名會員資料</p>
+        </div>
+        <button class="remove_notice"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid no_padding">
+                <div class="navbar-collapse collapse">
+                    <div class="member_function pull-right">
+                        <a href="" class="logout">登出</a>
+                        <div class="member_name hidden-xs"><span class="glyphicon glyphicon-user"></span> 帳號10101 /</div>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <a href="index.html" class="btn btn_style3 back_button"><span class="glyphicon glyphicon-arrow-left"></span> 返回主頁</a>
+                    </div>
+                    <div class="setting_notice">
+                        <button class="btn btn_style1" data-toggle="modal" data-target="#SettingNotice"><span class="glyphicon glyphicon-plus"></span> 設定通知</button>
+                    </div>
+                    <div class="col-sm-12 col-md-3 search_personnel" style="display:none;">
+                        <input type="text" placeholder="搜尋帳號">
+                        <button class="btn btn_style1">搜尋帳號</button>
+                    </div>
+                    <div class="col-sm-8 col-md-3 top_search pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn_style3 dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">公司 <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">公司</a></li>
+                                <li><a href="#">客戶</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" placeholder="搜尋統一編號">
+                        <button class="btn btn_style3"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
+    </header>
+    <div class="main_content">
+        <div class="container-fluid">
+            <div class="result_content result_content_product" style="display:none;">
+                <div class="list_table">
+                    <div class="table_head">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>產品名稱</th>
+                                    <th class="col_2">客服人員</th>
+                                    <th class="col_3">通知順位</th>
+                                    <th class="col_4">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>產品名稱</th>
+                                    <th class="col_2">客服人員</th>
+                                    <th class="col_3">通知順位</th>
+                                    <th class="col_4">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>飯店</td>
+                                    <td>王大明</td>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="status_group">
+                                            <div class="label status2" title="" alt="">
+                                                <div>進行</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>取消</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>完成</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>暫停</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>產品狀態</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>付款狀態</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn_style1" data-toggle="modal" data-target="#ResetNotice">設定</button>
+                                        <button class="btn btn_style2" data-toggle="modal" data-target="#Alert">刪除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- .list_table : END -->
+            </div>
+            <!-- .result_content_product : END -->
+            <div class="result_content result_content_project" style="display:none;">
+                <div class="list_table">
+                    <div class="table_head">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>代碼</th>
+                                    <th class="col_2">專案名稱</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>代碼</th>
+                                    <th class="col_2">專案名稱</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>06</td>
+                                    <td>總飯店加價管理系統</td>
+                                    <td>王大明</td>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="status_group">
+                                            <div class="label status2" title="" alt="">
+                                                <div>進行</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>取消</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>完成</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>暫停</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>產品狀態</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>付款狀態</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn_style1" data-toggle="modal" data-target="#ResetNotice">設定</button>
+                                        <button class="btn btn_style2" data-toggle="modal" data-target="#Alert">刪除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- .list_table : END -->
+            </div>
+            <!-- .result_content_product : END -->
+            <div class="result_content result_content_company">
+                <div class="list_table">
+                    <div class="table_head">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>統一編號</th>
+                                    <th class="col_2">公司名稱</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>統一編號</th>
+                                    <th class="col_2">公司名稱</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>45611225</td>
+                                    <td>東南旅行社有限公司</td>
+                                    <td>王大明</td>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="status_group">
+                                            <div class="label status2" title="" alt="">
+                                                <div>登入</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>忘記密碼</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>修改</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>刪除</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>問題詢問</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>建立訂單</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn_style1" data-toggle="modal" data-target="#ResetNotice">設定</button>
+                                        <button class="btn btn_style2" data-toggle="modal" data-target="#Alert">刪除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- .list_table : END -->
+            </div>
+            <!-- .result_content_company : END -->
+            <div class="result_content result_content_member" style="display:none;">
+                <div class="list_table">
+                    <div class="table_head">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>客戶名稱</th>
+                                    <th class="col_2">客戶帳號</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>客戶名稱</th>
+                                    <th class="col_2">客戶帳號</th>
+                                    <th class="col_3">客服人員</th>
+                                    <th class="col_4">通知順位</th>
+                                    <th class="col_5">通知狀態</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr>
+                                    <td>馬油油</td>
+                                    <td>mayoyo@mail.com</td>
+                                    <td>王大明</td>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="status_group">
+                                            <div class="label status2" title="" alt="">
+                                                <div>登入</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>忘記密碼</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>修改</div>
+                                            </div>
+                                            <div class="label status2" title="" alt="">
+                                                <div>刪除</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>問題詢問</div>
+                                            </div>
+                                            <div class="label status1" title="" alt="">
+                                                <div>建立訂單</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn_style1" data-toggle="modal" data-target="#ResetNotice">設定</button>
+                                        <button class="btn btn_style2" data-toggle="modal" data-target="#Alert">刪除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- .list_table : END -->
+            </div>
+            <!-- .result_content_member : END -->
+        </div>
+        <!-- container-fluid : END -->
+        <div class="modal form_modal fade" id="SettingNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body form_content">
+                        <div class="fill_form">
+                            <h4 class="form_title">通知對象</h4>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="fill_item">
+                                        <div class="item_content">
+                                            <ul class="polynomial_input member_input">
+                                                <li>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control tooltip_style" placeholder="請輸入公司統編" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="">
+                                                        <div class="tooltip_box">
+                                                            <ul>
+                                                                <li>
+                                                                    <button class="btn btn-sm btn_style3">福泰旅行社有限公司</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control tooltip_style" placeholder="請輸入會員帳號" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="">
+                                                        <div class="tooltip_box">
+                                                            <ul>
+                                                                <li>
+                                                                    <button class="btn btn-sm btn_style3">王大明 (mayoyo@mail.com)</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="error_message">錯誤訊息</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <h4 class="form_title">通知設定</h4>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tabs_block">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#ProductOption" aria-controls="ProductOption" role="tab" data-toggle="tab">產品通知 <span class="badge">2</span></a></li>
+                                            <li role="presentation"><a href="#ProjectOption" aria-controls="ProjectOption" role="tab" data-toggle="tab">專案通知 <span class="badge">2</span></a></li>
+                                            <li role="presentation"><a href="#CompanyOption" aria-controls="CompanyOption" role="tab" data-toggle="tab">公司通知 <span class="badge">2</span></a></li>
+                                            <li role="presentation"><a href="#MemberOption" aria-controls="MemberOption" role="tab" data-toggle="tab">客戶通知 <span class="badge">2</span></a></li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="ProductOption">
+                                                <button class="btn btn_style1" data-toggle="modal" data-target="#ProductList">選擇產品</button>
+                                                <ul class="setting_group_list">
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">飯店</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-1" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-1">
+                                                                                        <p>新增</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-2" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-2">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-3" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-3">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-4" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-4">
+                                                                                        <p>訂購</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-5" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-5">
+                                                                                        <p>狀態異動</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-1-6" name="StatusOption1-1">
+                                                                                    <label for="StatusOption1-1-6">
+                                                                                        <p>完售</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-1-1" name="PriorityOption1-1">
+                                                                                    <label for="PriorityOption1-1-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-1-2" name="PriorityOption1-1">
+                                                                                    <label for="PriorityOption1-1-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-1-3" name="PriorityOption1-1">
+                                                                                    <label for="PriorityOption1-1-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode1-1-1" name="StatusMode1-1">
+                                                                                    <label for="StatusMode1-1-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode1-1-2" name="StatusMode1-1">
+                                                                                    <label for="StatusMode1-1-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">機票</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-1" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-1">
+                                                                                        <p>新增</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-2" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-2">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-3" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-3">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-4" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-4">
+                                                                                        <p>訂購</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-5" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-5">
+                                                                                        <p>狀態異動</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption1-2-6" name="StatusOption1-2">
+                                                                                    <label for="StatusOption1-2-6">
+                                                                                        <p>完售</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-2-1" name="PriorityOption1-2">
+                                                                                    <label for="PriorityOption1-2-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-2-2" name="PriorityOption1-2">
+                                                                                    <label for="PriorityOption1-2-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption1-2-3" name="PriorityOption1-2">
+                                                                                    <label for="PriorityOption1-2-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode1-2-1" name="StatusMode1-2">
+                                                                                    <label for="StatusMode1-2-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode1-2-2" name="StatusMode1-2">
+                                                                                    <label for="StatusMode1-2-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="ProjectOption">
+                                                <button class="btn btn_style1" data-toggle="modal" data-target="#ProjectList">選擇專案</button>
+                                                <ul class="setting_group_list">
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">報表系統(1)</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-1" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-1">
+                                                                                        <p>合作申請</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-2" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-2">
+                                                                                        <p>註冊審核</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-3" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-3">
+                                                                                        <p>訂單建立</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-4" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-4">
+                                                                                        <p>訂單暫停</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-5" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-5">
+                                                                                        <p>訂單取消</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-6" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-6">
+                                                                                        <p>訂單完成</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-7" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-7">
+                                                                                        <p>訂單狀態</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-8" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-8">
+                                                                                        <p>請款</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-9" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-9">
+                                                                                        <p>付款</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-10" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-10">
+                                                                                        <p>核覆完成</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-1-11" name="StatusOption2-1">
+                                                                                    <label for="StatusOption2-1-11">
+                                                                                        <p>專案狀態</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-1-1" name="PriorityOption2-1">
+                                                                                    <label for="PriorityOption2-1-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-1-2" name="PriorityOption2-1">
+                                                                                    <label for="PriorityOption2-1-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-1-3" name="PriorityOption2-1">
+                                                                                    <label for="PriorityOption2-1-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode2-1-1" name="StatusMode2-1">
+                                                                                    <label for="StatusMode2-1-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode2-1-2" name="StatusMode2-1">
+                                                                                    <label for="StatusMode2-1-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">業務飯店B2B網站(4)</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-1" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-1">
+                                                                                        <p>合作申請</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-2" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-2">
+                                                                                        <p>註冊審核</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-3" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-3">
+                                                                                        <p>訂單建立</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-4" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-4">
+                                                                                        <p>訂單暫停</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-5" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-5">
+                                                                                        <p>訂單取消</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-6" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-6">
+                                                                                        <p>訂單完成</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-7" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-7">
+                                                                                        <p>訂單狀態</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-8" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-8">
+                                                                                        <p>請款</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-9" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-9">
+                                                                                        <p>付款</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-10" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-10">
+                                                                                        <p>核覆完成</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption2-2-11" name="StatusOption2-2">
+                                                                                    <label for="StatusOption2-2-11">
+                                                                                        <p>專案狀態</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-2-1" name="PriorityOption2-2">
+                                                                                    <label for="PriorityOption2-2-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-2-2" name="PriorityOption2-2">
+                                                                                    <label for="PriorityOption2-2-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption2-2-3" name="PriorityOption2-2">
+                                                                                    <label for="PriorityOption2-2-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode2-2-1" name="StatusMode2-2">
+                                                                                    <label for="StatusMode2-2-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode2-2-2" name="StatusMode2-2">
+                                                                                    <label for="StatusMode2-2-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="CompanyOption">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <div class="fill_item">
+                                                            <div class="item_content">
+                                                                <input type="text" class="form-control tooltip_style" placeholder="請輸入公司統編" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="">
+                                                            </div>
+                                                            <div class="error_message">錯誤訊息</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="setting_group_list">
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">福泰旅遊資訊部</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-1" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-1">
+                                                                                        <p>登入</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-2" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-2">
+                                                                                        <p>忘記密碼</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-3" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-3">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-4" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-4">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-5" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-5">
+                                                                                        <p>問題詢問</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-1-6" name="StatusOption3-1">
+                                                                                    <label for="StatusOption3-1-6">
+                                                                                        <p>建立訂單</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-1-1" name="PriorityOption3-1">
+                                                                                    <label for="PriorityOption3-1-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-1-2" name="PriorityOption3-1">
+                                                                                    <label for="PriorityOption3-1-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-1-3" name="PriorityOption3-1">
+                                                                                    <label for="PriorityOption3-1-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode3-1-1" name="StatusMode3-1">
+                                                                                    <label for="StatusMode3-1-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode3-1-2" name="StatusMode3-1">
+                                                                                    <label for="StatusMode3-1-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">福泰旅遊</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-1" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-1">
+                                                                                        <p>登入</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-2" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-2">
+                                                                                        <p>忘記密碼</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-3" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-3">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-4" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-4">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-5" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-5">
+                                                                                        <p>問題詢問</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption3-2-6" name="StatusOption3-2">
+                                                                                    <label for="StatusOption3-2-6">
+                                                                                        <p>建立訂單</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-2-1" name="PriorityOption3-2">
+                                                                                    <label for="PriorityOption3-2-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-2-2" name="PriorityOption3-2">
+                                                                                    <label for="PriorityOption3-2-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption3-2-3" name="PriorityOption3-2">
+                                                                                    <label for="PriorityOption3-2-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode3-2-1" name="StatusMode3-2">
+                                                                                    <label for="StatusMode3-2-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode3-2-2" name="StatusMode3-2">
+                                                                                    <label for="StatusMode3-2-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="MemberOption">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <div class="fill_item">
+                                                            <div class="item_content">
+                                                                <ul class="polynomial_input member_input">
+                                                                    <li>
+                                                                        <div class="col">
+                                                                            <input type="text" class="form-control tooltip_style" placeholder="請輸入公司統編" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="">
+                                                                            <div class="tooltip_box">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <button class="btn btn-sm btn_style3">福泰旅行社有限公司</button>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text" class="form-control tooltip_style" placeholder="請輸入會員帳號" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="">
+                                                                            <div class="tooltip_box">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <button class="btn btn-sm btn_style3">王大明 (mayoyo@mail.com)</button>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="error_message">此公司已設定公司通知</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="setting_group_list">
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">王小明(shumi@mail.com) - 福泰旅遊</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-1" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-1">
+                                                                                        <p>登入</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-2" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-2">
+                                                                                        <p>忘記密碼</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-3" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-3">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-4" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-4">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-5" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-5">
+                                                                                        <p>問題詢問</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-1-6" name="StatusOption4-1">
+                                                                                    <label for="StatusOption4-1-6">
+                                                                                        <p>建立訂單</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-1-1" name="PriorityOption4-1">
+                                                                                    <label for="PriorityOption4-1-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-1-2" name="PriorityOption4-1">
+                                                                                    <label for="PriorityOption4-1-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-1-3" name="PriorityOption4-1">
+                                                                                    <label for="PriorityOption4-1-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode4-1-1" name="StatusMode4-1">
+                                                                                    <label for="StatusMode4-1-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode4-1-2" name="StatusMode4-1">
+                                                                                    <label for="StatusMode4-1-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="setting_group">
+                                                            <div class="group_top col-xs-12">
+                                                                <div class="group_title">王大明(dami@mail.com) - 福泰旅遊</div>
+                                                                <button class="btn btn-sm btn_style3 pull-right"><span class="glyphicon glyphicon-trash"></span> 移除</button>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知狀態</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-1" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-1">
+                                                                                        <p>登入</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-2" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-2">
+                                                                                        <p>忘記密碼</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-3" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-3">
+                                                                                        <p>修改</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-4" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-4">
+                                                                                        <p>刪除</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-5" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-5">
+                                                                                        <p>問題詢問</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusOption4-2-6" name="StatusOption4-2">
+                                                                                    <label for="StatusOption4-2-6">
+                                                                                        <p>建立訂單</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知順位</label>
+                                                                    <div class="item_content">
+                                                                        <div class="radio_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-2-1" name="PriorityOption4-2">
+                                                                                    <label for="PriorityOption4-2-1">
+                                                                                        <p>第1位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-2-2" name="PriorityOption4-2">
+                                                                                    <label for="PriorityOption4-2-2">
+                                                                                        <p>第2位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="radio" id="PriorityOption4-2-3" name="PriorityOption4-2">
+                                                                                    <label for="PriorityOption4-2-3">
+                                                                                        <p>第3位</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 pull-right">
+                                                                <div class="fill_item">
+                                                                    <label class="item_title">通知方式</label>
+                                                                    <div class="item_content">
+                                                                        <div class="checkbox_option_group">
+                                                                            <ul class="option_list">
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode4-2-1" name="StatusMode4-2">
+                                                                                    <label for="StatusMode4-2-1">
+                                                                                        <p>推播</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <input type="checkbox" id="StatusMode4-2-2" name="StatusMode4-2">
+                                                                                    <label for="StatusMode4-2-2">
+                                                                                        <p>Email</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_style2" id="" data-dismiss="modal" data-toggle="modal" data-target="#EditCompany">取消</button>
+                        <button type="button" class="btn btn_style1" id="CheckCreate" data-dismiss="modal">完成</button>
+                    </div>
+                </div>
+                <!-- .modal-content : END -->
+            </div>
+        </div>
+        <!-- #SettingNotice : END -->
+        <div class="modal form_modal fade" id="ResetNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">設定</h4>
+                    </div>
+                    <div class="modal-body form_content">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="fill_item">
+                                    <label class="item_title">通知狀態</label>
+                                    <div class="item_content">
+                                        <div class="checkbox_option_group edit_product_options">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-1" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-1">
+                                                        <p>新增</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-2" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-2">
+                                                        <p>修改</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-3" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-3">
+                                                        <p>刪除</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-4" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-4">
+                                                        <p>訂購</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-5" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-5">
+                                                        <p>狀態異動</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption1-6" name="EditStatusOption1">
+                                                    <label for="EditStatusOption1-6">
+                                                        <p>完售</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="checkbox_option_group edit_project_options" style="display:none;">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-1" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-1">
+                                                        <p>合作申請</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-2" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-2">
+                                                        <p>註冊審核</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-3" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-3">
+                                                        <p>訂單建立</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-4" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-4">
+                                                        <p>訂單暫停</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-5" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-5">
+                                                        <p>訂單取消</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-6" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-6">
+                                                        <p>訂單完成</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-7" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-7">
+                                                        <p>訂單狀態</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-8" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-8">
+                                                        <p>請款</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-9" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-9">
+                                                        <p>付款</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-10" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-10">
+                                                        <p>核覆完成</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption2-11" name="EditStatusOption2">
+                                                    <label for="EditStatusOption2-11">
+                                                        <p>專案狀態</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="checkbox_option_group edit_company_options" style="display:none;">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-1" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-1">
+                                                        <p>登入</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-2" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-2">
+                                                        <p>忘記密碼</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-3" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-3">
+                                                        <p>修改</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-4" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-4">
+                                                        <p>刪除</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-5" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-5">
+                                                        <p>問題詢問</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption3-6" name="EditStatusOption3">
+                                                    <label for="EditStatusOption3-6">
+                                                        <p>建立訂單</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="checkbox_option_group edit_member_options" style="display:none;">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-1" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-1">
+                                                        <p>登入</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-2" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-2">
+                                                        <p>忘記密碼</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-3" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-3">
+                                                        <p>修改</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-4" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-4">
+                                                        <p>刪除</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-5" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-5">
+                                                        <p>問題詢問</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusOption4-6" name="EditStatusOption4">
+                                                    <label for="EditStatusOption4-6">
+                                                        <p>建立訂單</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="error_message">錯誤訊息</div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="fill_item">
+                                    <label class="item_title">通知順位</label>
+                                    <div class="item_content">
+                                        <div class="radio_option_group">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="radio" id="EditPriorityOption1-1" name="EditPriorityOption1">
+                                                    <label for="EditPriorityOption1-1">
+                                                        <p>第1位</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="EditPriorityOption1-2" name="EditPriorityOption1">
+                                                    <label for="EditPriorityOption1-2">
+                                                        <p>第2位</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="EditPriorityOption1-3" name="EditPriorityOption1">
+                                                    <label for="EditPriorityOption1-3">
+                                                        <p>第3位</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="error_message">錯誤訊息</div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 pull-right">
+                                <div class="fill_item">
+                                    <label class="item_title">通知方式</label>
+                                    <div class="item_content">
+                                        <div class="checkbox_option_group">
+                                            <ul class="option_list">
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusMode1-1" name="EditStatusMode1">
+                                                    <label for="EditStatusMode1-1">
+                                                        <p>推播</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="EditStatusMode1-2" name="EditStatusMode1">
+                                                    <label for="EditStatusMode1-2">
+                                                        <p>Email</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_style2" id="" data-dismiss="modal" data-toggle="modal" data-target="#EditCompany">取消</button>
+                        <button type="button" class="btn btn_style1" id="CheckCreate" data-dismiss="modal">完成</button>
+                    </div>
+                </div>
+                <!-- .modal-content : END -->
+            </div>
+        </div>
+        <!-- #ResetNotice : END -->
+        <div class="modal alert_modal fade in" id="Alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>確認要刪除?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_style1" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn_style2" data-dismiss="modal">確認</button>
+                    </div>
+                </div>
+                <!-- .modal-content : END -->
+            </div>
+        </div>
+    </div>
+    <!-- .main_content : END -->
+</body>
+
+</html>
